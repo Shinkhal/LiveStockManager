@@ -23,16 +23,8 @@ It helps farmers manage animals, vaccinations, reminders, and health records —
 ---
 
 ## 📸 Screenshots
+<img width="1920" height="1080" alt="Screenshot (66)" src="https://github.com/user-attachments/assets/4ee4a100-4801-4a4b-8211-0d7471eff47e" />
 
-> Add your project screenshots here after running locally.
-
-```
-
-/screenshots/homepage.png
-/screenshots/login.png
-/screenshots/dashboard.png
-
-````
 
 ---
 
@@ -60,8 +52,8 @@ Follow the steps to run this project locally:
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/your-username/livestock-manager.git
-cd livestock-manager
+git clone https://github.com/Shinkhal/LiveStockManager.git
+cd LiveStockManager
 ````
 
 ### 2️⃣ Create a virtual environment
@@ -103,17 +95,6 @@ Now open:
 
 ---
 
-## 🧪 Test Credentials
-
-(Optional)
-You can include demo credentials if presenting the project:
-
-```
-Username: demo
-Password: demo123
-```
-
----
 
 ## 📁 Project Structure
 
@@ -133,18 +114,6 @@ livestock_manager
 README.md
 manage.py
 ```
-
----
-
-## ✅ Improvements to Add (Future Scope)
-
-✅ Upload photos for animals
-✅ Vaccination certificates (PDF export)
-✅ Email/SMS reminders
-✅ Graphs and analytics (Chart.js)
-✅ Animal health history
-✅ Multi-farm support
-✅ Dark mode
 
 ---
 
@@ -169,7 +138,7 @@ For major changes, please open an issue first to discuss what you'd like to chan
 
 ## ⚖️ License
 
-MIT License (optional)
+MIT License 
 
 ---
 
