@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% block title %}Edit Vaccination{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Edit Vaccination</h2>
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

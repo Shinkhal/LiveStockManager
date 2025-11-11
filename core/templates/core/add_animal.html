@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+{% block title %}Add Animal | Livestock Manager{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>🐄 Add New Animal</h2>
+    
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        
+        {{ form.errors }}
+        {{ form.as_p }}
+        
+        <button type="submit" class="btn-primary">Add Animal</button>
+    </form>
+
+    <p class="auth-text">
+        <a href="{% url 'dashboard' %}">← Back to dashboard</a>
+    </p>
+</div>
+
+<style>
+    /* Enhanced form field styling for add animal */
+    .auth-form p {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .auth-form p label {
+        margin-bottom: 0.5rem;
+    }
+    
+    .auth-form ul.errorlist {
+        margin-bottom: 1rem;
+        padding-left: 0;
+    }
+</style>
+{% endblock %}

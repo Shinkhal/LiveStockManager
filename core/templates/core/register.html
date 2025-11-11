@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Register | Livestock Manager{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>🐄 Create Account</h2>
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+
+        {{ user_form.errors }}
+        {{ owner_form.errors }}
+
+        {{ user_form.as_p }}
+        {{ owner_form.as_p }}
+
+        <button type="submit" class="btn-primary">Register</button>
+    </form>
+
+    <p class="auth-text">
+        Already have an account? <a href="{% url 'login' %}">Login here</a>
+    </p>
+</div>
+
+<style>
+    /* Enhanced form field styling for registration */
+    .auth-form p {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .auth-form p label {
+        margin-bottom: 0.5rem;
+    }
+    
+    .auth-form ul.errorlist {
+        margin-bottom: 1rem;
+        padding-left: 0;
+    }
+</style>
+{% endblock %}

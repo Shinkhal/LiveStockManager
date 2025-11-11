@@ -1,0 +1,126 @@
+{% extends 'core/base.html' %}
+{% block title %}Dashboard | Livestock Manager{% endblock %}
+
+{% block content %}
+<div class="header">
+    <h2>Welcome, {{ owner.name }}</h2>
+    <a href="{% url 'logout' %}" class="logout">Logout</a>
+</div>
+
+<div class="container">
+
+    <h3>Your Animals</h3>
+    {% if animals %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Species</th>
+                <th>Breed</th>
+                <th>Age (months)</th>
+                <th>Actions</th>  <!-- ✅ added -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal in animals %}
+            <tr>
+                <td><strong>{{ animal.name }}</strong></td>
+                <td>{{ animal.get_species_display }}</td>
+                <td>{{ animal.breed }}</td>
+                <td>{{ animal.age }}</td>
+                <td>
+                    <a href="{% url 'edit_animal' animal.id %}">Edit</a>
+                    <a href="{% url 'delete_animal' animal.id %}" style="color:red;margin-left:10px;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No animals added yet. Start by adding your first animal! 🐄</p>
+    {% endif %}
+
+    <a href="{% url 'add_animal' %}" class="btn-primary" style="margin-top:10px;display:inline-block;">+ Add Animal</a>
+
+
+    <h3>Recent Vaccinations</h3>
+    {% if vaccinations %}
+    <table>
+        <thead>
+            <tr>
+                <th>Animal</th>
+                <th>Vaccine</th>
+                <th>Date Given</th>
+                <th>Next Due</th>
+                <th>Actions</th> <!-- ✅ added -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for v in vaccinations %}
+            <tr>
+                <td><strong>{{ v.animal.name }}</strong></td>
+                <td>{{ v.vaccine_name }}</td>
+                <td>{{ v.date_given }}</td>
+                <td>
+                    <span class="{% if v.next_due and v.next_due <= today %}overdue{% endif %}">
+                        {{ v.next_due|default:"N/A" }}
+                    </span>
+                </td>
+                <td>
+                    <a href="{% url 'edit_vaccination' v.id %}">Edit</a>
+                    <a href="{% url 'delete_vaccination' v.id %}" style="color:red;margin-left:10px;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No vaccination records found. Keep your animals healthy! 💉</p>
+    {% endif %}
+
+    <a href="{% url 'add_vaccination' %}" class="btn-primary" style="margin-top:10px;display:inline-block;">+ Add Vaccination</a>
+
+
+    <h3>Upcoming Vaccinations</h3>
+    {% if reminders %}
+    <table>
+        <tr>
+            <th>Animal</th>
+            <th>Vaccine</th>
+            <th>Next Due</th>
+        </tr>
+        {% for r in reminders %}
+        <tr>
+            <td>{{ r.animal.name }}</td>
+            <td>{{ r.vaccine_name }}</td>
+            <td>{{ r.next_due }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No upcoming vaccinations.</p>
+    {% endif %}
+
+
+    <h3 style="color:#e74c3c;">Overdue Vaccinations</h3>
+    {% if overdue %}
+    <table>
+        <tr class="overdue-row">
+            <th>Animal</th>
+            <th>Vaccine</th>
+            <th>Scheduled Date</th>
+        </tr>
+        {% for o in overdue %}
+        <tr style="background:#fdecec;">
+            <td>{{ o.animal.name }}</td>
+            <td>{{ o.vaccine_name }}</td>
+            <td>{{ o.next_due }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No overdue vaccinations 🎉</p>
+    {% endif %}
+
+</div>
+{% endblock %}

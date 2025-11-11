@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+{% block title %}Delete Vaccination{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>Delete Vaccination?</h2>
+
+    <p>Are you sure you want to delete this record?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-primary" style="background:#e74c3c;">Yes, Delete</button>
+    </form>
+
+    <p class="auth-text">
+        <a href="{% url 'dashboard' %}">Cancel</a>
+    </p>
+</div>
+{% endblock %}

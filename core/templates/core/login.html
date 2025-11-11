@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Login | Livestock Manager{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>🐄 Welcome Back</h2>
+
+    {% if form.errors or error %}
+    <div class="errorlist">
+        <li>Invalid username or password. Please try again.</li>
+    </div>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+        {% csrf_token %}
+        
+        <div>
+            <label for="id_username">Username</label>
+            <input type="text" name="username" id="id_username" required placeholder="Enter your username">
+        </div>
+
+        <div>
+            <label for="id_password">Password</label>
+            <input type="password" name="password" id="id_password" required placeholder="Enter your password">
+        </div>
+
+        <button type="submit" class="btn-primary">Login</button>
+    </form>
+
+    <p class="auth-text">
+        Don't have an account? <a href="{% url 'register' %}">Register here</a>
+    </p>
+</div>
+{% endblock %}
