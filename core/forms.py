@@ -32,7 +32,6 @@ class AnimalForm(forms.ModelForm):
         fields = ['name', 'species', 'breed', 'age']
 
 
-
 class VaccinationForm(forms.ModelForm):
     class Meta:
         model = Vaccination
@@ -43,7 +42,7 @@ class VaccinationForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        owner = kwargs.pop('owner', None)  # ✅ owner extracted here
+        owner = kwargs.pop('owner', None)
         super().__init__(*args, **kwargs)
         if owner:
             self.fields['animal'].queryset = Animal.objects.filter(owner=owner)
